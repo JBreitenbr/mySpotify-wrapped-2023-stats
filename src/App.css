@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  box-sizing: border-box;
+  /*background-color: white;*/
+  font-family: 'Nunito', -apple-system, system-ui, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  /*letter-spacing: 1px;*/
+  background-color: #21234a;
+  color: #cdcdcd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#canvas {
+  height: 450px;
+  width: 350px;
+  border: 1px solid black;
+  background-color: #f7f7f7;
+  margin-top: 5vh;
+}
+#canvas_b {
+  height: 510px;
+  width: 350px;
+  border: 1px solid black;
+  background-color: #f7f7f7;
+  margin-top: 5vh;
+}
+#canvas_c {
+  height: 420px;
+  width: 350px;
+  border: 1px solid black;
+  background-color: #f7f7f7;
+  margin-top: 5vh;
+}
+
+#tooltip {
+  position: absolute;
+  padding: 5px;
+  font-size: 11px;
+  width: min(75vw,200px);
+  border: 2px solid navy;
+  color: navy;
+  text-align: left;
+  background-color:#f7f7f7;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+#selectButton {
+  margin-top: 5vh;
+}
+
+.wordcloud {
+  height: 42vh;
+  /*width: 85%;*/
+  margin-top:2vh;
+}

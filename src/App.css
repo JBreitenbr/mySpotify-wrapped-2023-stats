@@ -48,21 +48,58 @@ body {
   position: absolute;
   padding: 5px;
   font-size: 11px;
-  width: min(75vw,200px);
-  border: 2px solid navy;
-  color: navy;
+  width: min(40vw,180px);
+  border: 2px solid #21234a;
+  color: #21234a;
   text-align: left;
-  background-color:#f7f7f7;
+  background-color:#fff7eb;
   border-radius: 5px;
   visibility: hidden;
 }
 
 #selectButton {
-  margin-top: 5vh;
+  margin-top: 5vh; 
+  border-radius: 5px;
+  height: 24px;
+  font-size: 12px;
+  text-align: center;
+  color: #21234a;
+  background-color: #f9f9f9;
+  border: 2px solid #21234a;
 }
 
 .wordcloud {
   height: 42vh;
-  /*width: 85%;*/
   margin-top:2vh;
+}
+
+@media screen and (min-width:768px) and (min-aspect-ratio: 1.2) {
+
+ #canvas_b {
+   height: 550px;
+   width: 580px;
+ }
+  
+}
+
+@media screen and (min-width:768px) and (max-aspect-ratio: 1.2) {
+
+ #canvas_b {
+   height: 700px;
+   width: 650px;
+ }
+}
+
+@media screen and (min-width:1050px){
+  #canvas_b{
+    height: 670px;
+    width: 800px;
+  }
+}
+
+@media screen and (min-width:1300px){
+  #canvas_b{
+    height: 800px;
+    width: 1000px;
+  }
 }

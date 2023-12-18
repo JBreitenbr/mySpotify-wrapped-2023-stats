@@ -66,7 +66,7 @@ canvas.append('g').style("font","10px times").call(yAxis).attr('id','y-axis').at
           .data(boxData)
           .enter()
           .append('circle')
-          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.toUpperCase()+": "+item[boxHash[dim]]).style("left","140px").style("top","450px")}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
+          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.toUpperCase()+": "+item[boxHash[dim]]).style("left","140px").style("top","450px").style("background-color",colorObj[colorHash[dim]](5)).style("color",colorObj[colorHash[dim]](100))}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
   };
   
 showDimension(dim);

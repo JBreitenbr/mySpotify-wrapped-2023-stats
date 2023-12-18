@@ -6,7 +6,8 @@ const Navbar=() => {
   return (
     <div className="navbar" >
       <div className="links">
-        <Link to="/srcdoc"></Link>
+        <Link to="/"></Link>
+        <Link to="/turbo-pancake"></Link>
         <Link to="/bubble">Timeline</Link>
         <Link to="/histogram">Histograms</Link>
         <Link to="/boxplot">Boxplots</Link>

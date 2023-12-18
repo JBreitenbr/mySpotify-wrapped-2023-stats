@@ -14,7 +14,7 @@ export default function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path="/srcdoc" element={<BubbleChart/>}/>
+          <Route path="/" element={<BubbleChart/>}/><Route path="/turbo-pancake" element={<BubbleChart/>}/>
           <Route path="/bubble" element={<BubbleChart/>}/>
           <Route path="/histogram" element={<Histogram/>}/>
           <Route path="/boxplot" element={<Boxplot/>}/>

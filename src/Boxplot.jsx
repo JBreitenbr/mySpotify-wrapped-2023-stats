@@ -11,7 +11,6 @@ const handleChange = (event) => {
 setDim(event.target.value);
 };
   
-  
 function showDimension(dim){
 d3.select("#canvas").remove();
 let canvas=d3.select("body").append("svg")
@@ -35,6 +34,8 @@ colorObj[10]=d3.scaleSequential().interpolator(d3.interpolatePuRd);
 let xScale=d3.scaleLinear().domain([0,5]).range([pad,w-pad]);
 
 let yScale = d3.scaleLinear().domain(boxDict[dim]["yrange"]).range([h-pad,pad]);
+console.log(h-pad-yScale(boxDict[dim]["stats"]["75%"]));
+console.log(h-pad-yScale(boxDict[dim]["stats"]["25%"]));
 canvas.append("line")         
         .style("stroke", "black") 
         .attr("x1", xScale(2.35))     
@@ -44,7 +45,7 @@ canvas.append("line")
         .attr("x1", xScale(2.0))     
         .attr("y1", yScale(Math.min(boxDict[dim]["stats"]["upper"],boxDict[dim]["yrange"][1])))            .attr("x2", xScale(2.7))    
         .attr("y2", yScale(Math.min(boxDict[dim]["stats"]["upper"],boxDict[dim]["yrange"][1]))) ;
-    canvas.append("rect").attr("x",xScale(0.5)).attr("y",yScale(boxDict[dim]["stats"]["75%"])).attr("width",xScale(4.2)-xScale(0.5)).attr("height",dim=="duration_s"?60:h-pad-yScale(boxDict[dim]["stats"]["IQR"])).attr("fill",colorObj[colorHash[dim]](10)).style("opacity",0.5).attr("stroke","black").attr("stroke-width",1);
+    canvas.append("rect").attr("x",xScale(0.5)).attr("y",yScale(boxDict[dim]["stats"]["75%"])).attr("width",xScale(4.2)-xScale(0.5)).attr("height",yScale(boxDict[dim]["stats"]["25%"])-yScale(boxDict[dim]["stats"]["75%"])).attr("fill",colorObj[colorHash[dim]](10)).style("opacity",0.5).attr("stroke","black").attr("stroke-width",1);
     canvas.append("line")         
     .style("stroke", "black") 
     .attr("x1", xScale(0.5))     
@@ -66,7 +67,7 @@ canvas.append('g').style("font","10px times").call(yAxis).attr('id','y-axis').at
           .data(boxData)
           .enter()
           .append('circle')
-          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.toUpperCase()+": "+item[boxHash[dim]]).style("left","140px").style("top","450px").style("background-color",colorObj[colorHash[dim]](5)).style("color",colorObj[colorHash[dim]](100))}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
+          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.slice(0,1).toUpperCase()+dim.slice(1)+": "+item[boxHash[dim]]).style("left",event.pageX-20 +"px").style("top","50px").style("background-color",colorObj[colorHash[dim]](5)).style("border",`solid 2px ${colorObj[colorHash[dim]](100)}`).style("color",colorObj[colorHash[dim]](100))}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
   };
   
 showDimension(dim);

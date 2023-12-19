@@ -12,30 +12,31 @@ let h=+d3.select("#canvas_c").style("height").slice(0,-2);
 let pad=(1/6)*w;
 let myGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 let dims = ["danceability","energy","loudness","speechiness","acousticness","instrumentalness","liveness","valence","tempo","duration_ms"];
-/*let myVars2 = ["danceability","energy","loudness","speechiness","acousticness","instrumentalness","liveness","valence","tempo","duration_ms"];*/
+
 let xScale = d3.scaleBand()
-  .range([pad,w-pad])
+  .range([1.5*pad,w-0.5*pad])
   .domain(dims)
   .padding(0.01);
     
 let yScale = d3.scaleBand()
-  .range([pad,h-pad])
+  .range([0.8*pad,h-1.2*pad])
   .domain(dims)
   .padding(0.01);
 let xAxis=d3.axisBottom(xScale);
 let yAxis=d3.axisLeft(yScale);
-canvas.append('g').style("font","7px times").call(xAxis).attr('id','x-axis').attr('transform','translate(0,'+(h-pad)+')').selectAll("text")  
+canvas.append('g').style("font","9px arial").call(xAxis).style("color","darkred").attr('id','x-axis').attr('transform','translate(0,'+(h-1.2*pad)+')').selectAll("text")  
     .style("text-anchor", "end")
     .attr("dx", "-.8em")
     .attr("dy", ".15em")
     .attr("transform", "rotate(-45)");
-canvas.append('g').style("font","6.5px times").call(yAxis).attr('id','y-axis').attr('transform','translate('+pad+',0)').selectAll("text")  
-    .style("text-anchor", "end")
+canvas.append('g').style("font","9px arial").call(yAxis).attr('id','y-axis').attr('transform','translate('+1.5*pad+',0)').style("color","darkred");
+    /*.style("text-anchor", "end")
     .attr("dx", "-.8em")
     .attr("dy", ".15em")
-    .attr("transform", "rotate(-35)");
+    .attr("transform", "rotate(-35)");*/
 //let myColor=d3.scaleSequential().interpolator(d3.interpolateBlues);
-let myColor=d3.scaleLinear().range(["#ddc7bb","#223844"]).domain([0,0.6]);
+    
+let myColor=d3.scaleLinear().range(["lightyellow","darkred"]).domain([0,0.8]);
 //myColor(1)="#d7d7d7";
 canvas.selectAll("rect")
       .data(nested)
@@ -45,18 +46,18 @@ canvas.selectAll("rect")
       .attr("y", (d)=>yScale(d[1]) )
       .attr("width", xScale.bandwidth() )
       .attr("height", yScale.bandwidth() )
-      .style("fill", (d)=>myColor(d[2]));
+      .style("fill", (d)=>myColor(Math.abs(d[2]))).attr("stroke","darkred").attr("stroke-width",0.5);
 let xdir=xScale(dims[1])-xScale(dims[0]);
 let ydir=yScale(dims[1])-yScale(dims[0]);
 console.log(xdir);
 console.log(ydir);
 for(let i=0;i<10;i++){
   for(let j=0;j<10;j++){
-    if(i!=j && nested[i+10*j][2]<0){
+    if(i!=j && Math.abs(nested[i+10*j][2])<0.3){
 canvas.append("text").
-attr("x",xScale(dims[0])+i*xdir).attr("y",yScale(dims[0])+0.5*yScale.bandwidth()+j*ydir+2).style("font","7px arial").text(nested[i+10*j][2]).style("fill","black");   } if(i!=j && nested[i+10*j][2]>=0){
+attr("x",xScale(dims[0])+i*xdir).attr("y",yScale(dims[0])+0.5*yScale.bandwidth()+j*ydir+2).style("font","8px arial").text(nested[i+10*j][2]).style("fill","darkred");   } if(i!=j && Math.abs(nested[i+10*j][2])>=0.3){
 canvas.append("text").
-attr("x",xScale(dims[0])+i*xdir).attr("y",yScale(dims[0])+0.5*yScale.bandwidth()+j*ydir+2).style("font","7px arial").text(nested[i+10*j][2]).style("fill","white");
+attr("x",xScale(dims[0])+i*xdir).attr("y",yScale(dims[0])+0.5*yScale.bandwidth()+j*ydir+2).style("font","8px arial").text(nested[i+10*j][2]).style("fill","lightyellow");
     }}}
 
     

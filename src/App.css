@@ -144,7 +144,8 @@ body {
   }
   .wordcloud {
   height: 42vw;
-  margin-top:2vh;
+  margin-top:5vh;
+  margin-left:5vh;
   }
 }
 
@@ -167,6 +168,7 @@ body {
   }
   .wordcloud {
   height: 42vw;
-  margin-top:2vh;
+  margin-top:5vh;
+  margin-left: 5vh;
   }
 }

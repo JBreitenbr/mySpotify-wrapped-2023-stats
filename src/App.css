@@ -99,6 +99,13 @@ body {
   height: 32px;
   font-size: 16px;
   }
+  .wrapper {
+    flex-direction: row;
+  }
+  .wordcloud {
+  height: 42vw;
+  margin-top:2vh;
+}
 }
 
 @media screen and (min-width:768px) and (max-aspect-ratio: 1.2) {
@@ -132,7 +139,13 @@ body {
     margin-top: 3vh;
     height: 36px;
     font-size: 20px;
-}
+}  .wrapper {
+    flex-direction: row;
+  }
+  .wordcloud {
+  height: 42vw;
+  margin-top:2vh;
+  }
 }
 
 @media screen and (min-width:1300px){
@@ -149,4 +162,11 @@ body {
     height: 40px;
     font-size: 24px;
     }
+  .wrapper {
+    flex-direction: row;
+  }
+  .wordcloud {
+  height: 42vw;
+  margin-top:2vh;
+  }
 }

@@ -45,7 +45,7 @@ canvas.append("text").text(years[i]).attr("x",7).attr("y",yScale(years[i])+0.73*
           .data(bubbleData)
           .enter()
           .append('circle')
-          .attr('cx',(item)=>xScale(item[5])).attr('cy',(item)=>yScale(item[2])+0.5*d).attr('r',(item)=>item[4]/4*h/510).attr("fill",(item)=>colorObj[item[6]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[7]).style("left","50vw").style("top","50vh").style("font",`${10*w/350}px arial`)}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
+          .attr('cx',(item)=>xScale(item[5])).attr('cy',(item)=>yScale(item[2])+0.5*d).attr('r',(item)=>item[4]/4*h/510).attr("fill",(item)=>colorObj[item[6]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[7]).style("left",event.pageX-20+"px").style("top",event.pageY-20+"px").style("font",`${w<h?10*w/350:10*h/450}px arial`)}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
   },[]);
   return (<><div id="tooltip" ref={tooltipRef}></div><svg id="canvas_b" ref={svgRef} /></>);
 }

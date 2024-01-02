@@ -7,7 +7,7 @@ const Navbar=() => {
     <div className="navbar" >
       <div className="links">
         <Link to="/"></Link>
-        <Link to="/turbo-pancake"></Link>
+        <Link to="/mySpotify-wrapped-2023-stats"></Link>
         <Link to="/bubble">Timeline</Link>
         <Link to="/histogram">Histograms</Link>
         <Link to="/boxplot">Boxplots</Link>

@@ -14,7 +14,7 @@ let canvas=d3.select("body").append("svg")
 .attr("id","canvas");let w=+d3.select("#canvas").style("width").slice(0,-2);
 let h=+d3.select("#canvas").style("height").slice(0,-2);
 
-let pad=(3/35)*w;
+let pad=(4/35)*w;
 
 const bucketGen = d3
   .bin()
@@ -34,15 +34,17 @@ const bucketGen = d3
   console.log(buckets);
 let xAxis=d3.axisBottom(xScale);
 let yAxis=d3.axisLeft(yScale);
-canvas.append('g').style("font","10px times").call(xAxis).attr('id','x-axis').attr('transform','translate(0,'+(h-pad)+')');
-canvas.append('g').style("font","10px times").call(yAxis).attr('id','y-axis').attr('transform','translate('+pad+',0)');
-canvas.append("text").attr("x",260).attr("y",50).text("Mean: "+histDict[dim]["stats"]["Mean"]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",60).text("SD: "+histDict[dim]["stats"]["SD"]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",70).text("Min.: "+histDict[dim]["stats"]["Min."]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",80).text("Max.: "+histDict[dim]["stats"]["Max."]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",90).text("25%: "+histDict[dim]["stats"]["25%"]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",100).text("Median: "+histDict[dim]["stats"]["Median"]).style("font","10px arial")
-canvas.append("text").attr("x",260).attr("y",110).text("75%: "+histDict[dim]["stats"]["75%"]).style("font","10px arial")
+canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(xAxis).style('color','black').attr('transform','translate(0,'+(h-pad)+')');
+canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(yAxis).style('color','black').attr('transform','translate('+pad+',0)');
+  canvas.append("text").attr("x",w/50).attr("y",w<400?25:40*h/500).text("Count").style("font", `${w<h?(w/77+h/77):((w>700?w/93:w/83)+h/83)}px nunito`);
+
+canvas.append("text").attr("x",0.72*w).attr("y",50*h/450).text("Mean: "+histDict[dim]["stats"]["Mean"]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",60*h/450).text("SD: "+histDict[dim]["stats"]["SD"]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",70*h/450).text("Min.: "+histDict[dim]["stats"]["Min."]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",80*h/450).text("25%: "+histDict[dim]["stats"]["25%"]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",90*h/450).text("Median: "+histDict[dim]["stats"]["Median"]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",100*h/450).text("75%: "+histDict[dim]["stats"]["75%"]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
+canvas.append("text").attr("x",0.72*w).attr("y",110*h/450).text("Max.: "+histDict[dim]["stats"]["Max."]).style("font",`${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`);
 let data=[];
 for(let i=0; i<buckets.length;i++){
   data.push([h-pad-yScale(buckets[i].length),i*(xScale(histDict[dim]["binList"][2])-xScale(histDict[dim]["binList"][1]))]);
@@ -55,10 +57,10 @@ showDimension(dim);
 
 return(
 <><div className="bars"><select id="selectButton" value={dim} onChange={handleChange}>
-  <option value="danceability">Danceability</option><option value="energy">Energy</option><option value="loudness">Loudness</option>
+  <option value="danceability">Danceability</option><option value="energy">Energy</option><option value="loudness">Loudness (dB)</option>
 <option value="acousticness">Acousticness</option>
 <option value="instrumentalness">Instrumentalness</option><option value="valence">Valence</option><option value="liveness">Liveness</option>
-  <option value="speechiness">Speechiness</option><option value="tempo">Tempo</option>
+  <option value="speechiness">Speechiness</option><option value="tempo">Tempo (bpm)</option>
   <option value="duration_s">Duration (s)</option></select></div>
 </>)
 }

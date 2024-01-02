@@ -62,21 +62,21 @@ canvas.append("line")
         .attr("y1",        yScale(Math.max(boxDict[dim]["stats"]["lower"],boxDict[dim]["yrange"][0])))  .attr("x2", xScale(2.7))    
         .attr("y2",yScale(Math.max(boxDict[dim]["stats"]["lower"],boxDict[dim]["yrange"][0])))
 let yAxis=d3.axisLeft(yScale);
-canvas.append('g').style("font","10px times").call(yAxis).attr('id','y-axis').attr('transform','translate('+pad+',0)');
+canvas.append('g').style("font", `${w<h?(w/88+h/88):((w>700?w/110:w/93)+h/93)}px nunito`).call(yAxis).style('color','black').attr('transform','translate('+pad+',0)');
     canvas.selectAll('circle')
           .data(boxData)
           .enter()
           .append('circle')
-          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.slice(0,1).toUpperCase()+dim.slice(1)+": "+item[boxHash[dim]]).style("left",event.pageX-20 +"px").style("top","50px").style("background-color",colorObj[colorHash[dim]](5)).style("border",`solid 2px ${colorObj[colorHash[dim]](100)}`).style("color",colorObj[colorHash[dim]](100))}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
+          .attr('cx',(item)=>xScale(item[20])).attr('cy',(item)=>yScale(item[boxHash[dim]])).attr('r',(item)=>item[4]/3.8*h/450).attr("fill",(item)=>colorObj[colorHash[dim]](item[3])).attr("stroke","black").attr("stroke-width",1).on("mouseover",(event,item)=>{return toolTip.style("visibility","visible").html("Track: "+item[1]+"<br>" + "Artist: "+item[0]+"<br>"+"Release Year: "+item[2]+"<br>"+"Popularity (Spotify): "+item[3]+"<br>"+"Rank (Julia): "+item[6]+"<br>"+dim.slice(0,1).toUpperCase()+dim.slice(1)+": "+item[boxHash[dim]]).style("left",event.pageX-20 +"px").style("top","10vh").style("background-color",colorObj[colorHash[dim]](5)).style("border",`solid 2px ${colorObj[colorHash[dim]](100)}`).style("color",colorObj[colorHash[dim]](100))}).on("mouseleave",()=>{return toolTip.style("visibility","hidden")});
   };
   
 showDimension(dim);
 return(
 <><div><select id="selectButton" value={dim} onChange={handleChange}>
-  <option value="danceability">Danceability</option><option value="energy">Energy</option><option value="loudness">Loudness</option>
+  <option value="danceability">Danceability</option><option value="energy">Energy</option><option value="loudness">Loudness (dB)</option>
 <option value="acousticness">Acousticness</option>
 <option value="instrumentalness">Instrumentalness</option><option value="valence">Valence</option><option value="liveness">Liveness</option>
-  <option value="speechiness">Speechiness</option><option value="tempo">Tempo</option>
+  <option value="speechiness">Speechiness</option><option value="tempo">Tempo (bpm)</option>
   <option value="duration_s">Duration (s)</option>
 </select></div></>)
 }

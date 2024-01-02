@@ -71,6 +71,14 @@ body {
   border: 2px solid #21234a;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  text-align: center;
+  flex-direction: column;
+}
+
 .wordcloud {
   height: 42vh;
   margin-top:2vh;
@@ -78,7 +86,7 @@ body {
 
 @media screen and (min-width:768px) and (min-aspect-ratio: 1.2) {
 
- #canvas_b,#canvas {
+ #canvas_b,#canvas,#canvas_c {
    height: 550px;
    width: 580px;
  }
@@ -95,7 +103,7 @@ body {
 
 @media screen and (min-width:768px) and (max-aspect-ratio: 1.2) {
 
- #canvas_b,#canvas {
+ #canvas_b,#canvas,#canvas_c {
    height: 700px;
    width: 650px;
  }
@@ -111,7 +119,7 @@ body {
 }
 
 @media screen and (min-width:1050px){
-  #canvas_b{
+  #canvas_b,#canvas,#canvas_c{
     height: 670px;
     width: 800px;
   }
@@ -128,7 +136,7 @@ body {
 }
 
 @media screen and (min-width:1300px){
-  #canvas_b{
+  #canvas_b,#canvas,#canvas_c{
     height: 800px;
     width: 1000px;
   }

@@ -14,12 +14,12 @@ export default function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path="/" element={<BubbleChart/>}/><Route path="/turbo-pancake" element={<BubbleChart/>}/>
-          <Route path="/bubble" element={<BubbleChart/>}/>
-          <Route path="/histogram" element={<Histogram/>}/>
-          <Route path="/boxplot" element={<Boxplot/>}/>
-          <Route path="/corrs" element={<Heatmap/>}/>
-          <Route path="/pics" element={<Pics/>}/>
+          <Route path="/" element={<BubbleChart/>}/><Route path="/mySpotify-wrapped-2023-stats" element={<BubbleChart/>}/>
+          <Route path="/mySpotify-wrapped-2023-stats/bubble" element={<BubbleChart/>}/>
+          <Route path="/mySpotify-wrapped-2023-stats/histogram" element={<Histogram/>}/>
+          <Route path="/mySpotify-wrapped-2023-stats/boxplot" element={<Boxplot/>}/>
+          <Route path="/mySpotify-wrapped-2023-stats/corrs" element={<Heatmap/>}/>
+          <Route path="/mySpotify-wrapped-2023-stats/pics" element={<Pics/>}/>
           </Routes>
         </Router>
     </>

@@ -6,7 +6,7 @@ import genres from './genres.png';
 const Pics=() =>{
   d3.select("#canvas").remove();
   return (
-    <div>
+    <div className="wrapper">
      <img className="wordcloud" src={artists}/>
      <img className="wordcloud" src={genres}/>
     </div>
